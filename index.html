@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>snake game</title>
+    <link rel="stylesheet" href="game_1.css" />
+    
+  </head>
+  <body>
+    <div class="container">
+      <h1>Snake Game</h1>
+
+      <canvas id="game_canvas" width="400" height="400" style="display: none;"></canvas>
+
+      <div class="score">Score: <span id="score">0</span></div>
+      <button id="pause_resume">Pause</button>
+      <label for="theme_toggle">Theme: </label>
+      <select id="theme_toggle">
+        <option value="dark" selected>Dark</option>
+        <option value="light">Light</option>
+      </select>
+      <label for="snake_color">Snake Color: </label>
+      <select id="snake_color">
+        <option value="green" selected>Green</option>
+        <option value="blue">Blue</option>
+        <option value="orange">Orange</option>
+        <option value="purple">Purple</option>
+      </select>
+      <div class="score">High Score: <span id="high_score">0</span></div>
+
+      <button id="start_button" onclick="start_game()">Start Game</button>
+      <button id="restart" onclick="start_game()">Restart</button>
+            
+    </div>
+    <script src="game_1.js"></script>
+  </body>
+</html>
