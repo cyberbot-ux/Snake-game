@@ -14,7 +14,7 @@ pause_button.addEventListener("click", () => {
     is_paused = !is_paused;
     pause_button.textContent = is_paused ? "Resume" : "Pause";
 });
-
+//theam toggle
 theme_toggle.addEventListener("change", () => {
     if (theme_toggle.value === "light") {
         document.body.style.backgroundColor = "#fff";
@@ -28,7 +28,7 @@ theme_toggle.addEventListener("change", () => {
 snake_color_select.addEventListener("change", () => {
     current_snake_color = snake_color_select.value;
 });
-
+// music
 const eatSound = new Audio("music_food.mp3");
 const gameOverSound = new Audio("music_gameover.mp3");
 const gamemusic = new Audio("music_game.mp3");
@@ -47,7 +47,7 @@ let snake, food, dx, dy, score, game;
 start_button.addEventListener("click", start_game);
 restart_button.addEventListener("click", start_game);
 document.addEventListener("keydown", change_direction);
-
+//game start
 function start_game() {
     gamemusic.play();
     const selected_speed = 150;
