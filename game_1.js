@@ -1,20 +1,32 @@
-
 const pause_button = document.getElementById("pause_resume");
 const theme_toggle = document.getElementById("theme_toggle");
 const snake_color_select = document.getElementById("snake_color");
 const high_score_display = document.getElementById("high_score");
+const game_canvas = document.getElementById("game_canvas");
+const draw_ctx = game_canvas.getContext("2d");
+const score_display = document.getElementById("score");
+const start_button = document.getElementById("start_button");
+const restart_button = document.getElementById("restart");
+const touch_controls = document.getElementById("touch_controls");
 
 let high_score = localStorage.getItem("snake_high_score") || 0;
 high_score_display.textContent = high_score;
 
 let is_paused = false;
 let current_snake_color = "green";
+let snake, food, dx, dy, score, game;
+const box = 20;
+
+// music
+const eatSound = new Audio("music_food.mp3");
+const gameOverSound = new Audio("music_gameover.mp3");
+const gamemusic = new Audio("music_game.mp3");
 
 pause_button.addEventListener("click", () => {
     is_paused = !is_paused;
     pause_button.textContent = is_paused ? "Resume" : "Pause";
 });
-//theam toggle
+
 theme_toggle.addEventListener("change", () => {
     if (theme_toggle.value === "light") {
         document.body.style.backgroundColor = "#fff";
@@ -28,46 +40,50 @@ theme_toggle.addEventListener("change", () => {
 snake_color_select.addEventListener("change", () => {
     current_snake_color = snake_color_select.value;
 });
-// music
-const eatSound = new Audio("music_food.mp3");
-const gameOverSound = new Audio("music_gameover.mp3");
-const gamemusic = new Audio("music_game.mp3");
-
-
-const game_canvas = document.getElementById("game_canvas");
-const draw_ctx = game_canvas.getContext("2d");
-
-const score_display = document.getElementById("score");
-const start_button = document.getElementById("start_button");
-const restart_button = document.getElementById("restart");
-
-const box = 20;
-let snake, food, dx, dy, score, game;
 
 start_button.addEventListener("click", start_game);
 restart_button.addEventListener("click", start_game);
 document.addEventListener("keydown", change_direction);
-//game start
+
 function start_game() {
     gamemusic.play();
     const selected_speed = 150;
 
     snake = [{ x: 10 * box, y: 10 * box }];
-    food = {
-        x: Math.floor(Math.random() * 20) * box,
-        y: Math.floor(Math.random() * 20) * box
-    };
     dx = box;
     dy = 0;
     score = 0;
     score_display.textContent = score;
 
+    resizeCanvas();
+    spawn_food();
+
     game_canvas.style.display = "block";
     start_button.style.display = "none";
     restart_button.style.display = "none";
 
+    if (window.innerWidth <= 768) {
+        touch_controls.style.display = "block";
+    } else {
+        touch_controls.style.display = "none";
+    }
+
     if (game) clearInterval(game);
     game = setInterval(update_game, selected_speed);
+}
+
+function resizeCanvas() {
+    game_canvas.width = Math.min(window.innerWidth * 0.9, 400);
+    game_canvas.height = Math.min(window.innerWidth * 0.9, 400);
+}
+
+function spawn_food() {
+    const cols = Math.floor(game_canvas.width / box);
+    const rows = Math.floor(game_canvas.height / box);
+    food = {
+        x: Math.floor(Math.random() * cols) * box,
+        y: Math.floor(Math.random() * rows) * box
+    };
 }
 
 function change_direction(event) {
@@ -86,8 +102,25 @@ function change_direction(event) {
     }
 }
 
+function touch_move(direction) {
+    if (direction === "up" && dy === 0) {
+        dx = 0;
+        dy = -box;
+    } else if (direction === "down" && dy === 0) {
+        dx = 0;
+        dy = box;
+    } else if (direction === "left" && dx === 0) {
+        dx = -box;
+        dy = 0;
+    } else if (direction === "right" && dx === 0) {
+        dx = box;
+        dy = 0;
+    }
+}
+
 function update_game() {
     if (is_paused) return;
+
     draw_ctx.clearRect(0, 0, game_canvas.width, game_canvas.height);
 
     snake.forEach((part) => {
@@ -104,10 +137,7 @@ function update_game() {
         score += 10;
         eatSound.play();
         score_display.textContent = score;
-        food = {
-            x: Math.floor(Math.random() * 20) * box,
-            y: Math.floor(Math.random() * 20) * box
-        };
+        spawn_food();
     } else {
         snake.pop();
     }
@@ -137,6 +167,7 @@ function end_game() {
 
     game_canvas.style.display = "none";
     restart_button.style.display = "inline-block";
+    touch_controls.style.display = "none";
 
     const oldGameOver = document.getElementById("game_over_text");
     if (oldGameOver) oldGameOver.remove();

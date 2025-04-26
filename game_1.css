@@ -21,8 +21,12 @@ body {
     background-color: #eee;
     box-shadow: 0 0 20px #0f0;
     display: block;
-    margin: 10px auto;}
-
+    margin: 10px auto;
+    width: 90vw;
+    height: 90vw;
+    max-width: 400px;
+    max-height: 400px;
+}
 
 #start_button:active, #restart:active {
     transform: scale(1);
@@ -45,6 +49,7 @@ body {
     transform: scale(1.1);
     background: linear-gradient(45deg, green, limegreen);
 }
+
 #game_over_text {
     margin-top: 20px;
     font-size: 28px;
@@ -52,26 +57,7 @@ body {
     font-weight: bold;
     text-shadow: 0 0 10px red;
 }
-#speed_select {
-    padding: 8px 12px;
-    font-size: 16px;
-    border-radius: 8px;
-    margin: 10px;
-    background-color: #333;
-    color: white;
-    border: none;
-    box-shadow: 0 0 10px #0f0;
-    cursor: pointer;
-}
 
-#speed_select:hover {
-    background-color: #444;
-    box-shadow: 0 0 15px #0f0;
-}
-#speed_select:active {
-    transform: scale(0.95);
-    background-color: #555;
-}
 #pause_resume, #theme_toggle, #snake_color {
     padding: 10px 12px;
     font-size: 16px;
@@ -92,7 +78,42 @@ select#theme_toggle:hover,
 select#snake_color:hover {
     background-color: #444;
 }
+
 #pause_resume:active, #theme_toggle:active, #snake_color:active {
     transform: scale(0.95);
     background-color: #555;
+}
+
+/* Touch controls styling */
+#touch_controls {
+    margin-top: 20px;
+    display: none;
+}
+
+#touch_controls button {
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+    font-size: 24px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, limegreen, green);
+    border: none;
+    color: white;
+    box-shadow: 0 0 10px #0f0;
+    cursor: pointer;
+}
+
+#touch_controls button:active {
+    background: linear-gradient(45deg, green, limegreen);
+}
+
+/* Mobile-friendly adjustments */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 24px;
+    }
+    #start_button, #restart, #pause_resume, #theme_toggle, #snake_color {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
 }
