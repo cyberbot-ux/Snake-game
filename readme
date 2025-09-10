@@ -2,7 +2,7 @@
 
 A classic snake game recreated using **HTML, CSS, and JavaScript** — playable directly in your browser. Eat the food, grow the snake, and avoid hitting the walls or yourself. Simple, fun, and nostalgic!
 
-🎮 **[Play the Game Live](https://cyberbot-ux.github.io/Snake-game/)**
+🎮 [Play the Game Live](https://cyberbot-ux.github.io/Snake-game/)
 
 ---
 
@@ -37,9 +37,3 @@ A classic snake game recreated using **HTML, CSS, and JavaScript** — playable 
 - Simple, responsive design
 
 ---
-
-## 🚀 How to Run Locally
-
-```bash
-git clone https://github.com/cyberbot-ux/Snake-game.git
-cd Snake-game
