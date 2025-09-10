@@ -1,25 +1,45 @@
-Snake Game
-Play a simple Snake Game in your browser!
+# 🐍 Snake Game
 
-How to Play
+A classic snake game recreated using **HTML, CSS, and JavaScript** — playable directly in your browser. Eat the food, grow the snake, and avoid hitting the walls or yourself. Simple, fun, and nostalgic!
 
-Open index.html in your web browser.
+🎮 **[Play the Game Live](https://cyberbot-ux.github.io/Snake-game/)**
 
-Press Start Game to begin.
+---
 
-Use your Arrow Keys to move the snake.
+## 📸 Preview
 
-Eat the red food to grow and score points.
+![snake-game-preview](assets/preview.png) <!-- Replace with your own screenshot or GIF -->
 
-Avoid hitting the walls or yourself!
+---
 
-Features
-Pause and Resume the game.
+## 🎯 Game Rules
 
-Change the Snake color.
+- Use arrow keys to control the snake:
+  - `↑` Up
+  - `↓` Down
+  - `←` Left
+  - `→` Right
+- Each time the snake eats food, it:
+  - Grows longer
+  - Score increases
+- The game ends if the snake:
+  - Hits the wall
+  - Collides with itself
 
-Switch between Light and Dark themes.
+---
 
-High Score is saved automatically.
+## ✨ Features
 
-Fun background music and sounds.
+- Smooth animations and grid-based movement
+- Dynamic food placement
+- Score tracking
+- Game over detection
+- Simple, responsive design
+
+---
+
+## 🚀 How to Run Locally
+
+```bash
+git clone https://github.com/cyberbot-ux/Snake-game.git
+cd Snake-game
